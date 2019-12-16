@@ -41,17 +41,33 @@ Below is things you can do in this shopping website.
 # Screenshot
 Below is some screenshots of the project.
 
-**Main Page of ShopMax**
+**Main Page of ShopMax**  
+
 ![ScreenShot](https://raw.githubusercontent.com/FanFan0919/ShopMax/master/screenshots/index.png)
 
 
-**Register and Login**
+**Register and Login**  
+
 ![ScreenShot](https://raw.githubusercontent.com/FanFan0919/ShopMax/master/screenshots/login.png)
 ![ScreenShot](https://raw.githubusercontent.com/FanFan0919/ShopMax/master/screenshots/register.png)
 
 
-**Product Details**
+**Product Details**  
+
 ![ScreenShot](https://raw.githubusercontent.com/FanFan0919/ShopMax/master/screenshots/product_detail.png)
+
+
+**ShoppingCart Page when you have not login**  
+
+![ScreenShot](https://raw.githubusercontent.com/FanFan0919/ShopMax/master/screenshots/shoppingCart_withoutLogin.png)  
+
+
+**ShoppingCart Page / WaitList Page when you have login**  
+
+![ScreenShot](https://raw.githubusercontent.com/FanFan0919/ShopMax/master/screenshots/shoppingCart_withLogin.png)
+![ScreenShot](https://raw.githubusercontent.com/FanFan0919/ShopMax/master/screenshots/wishList_withLogin.png)
+
+
 
 
 
