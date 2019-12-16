@@ -52,13 +52,4 @@ public class ShoppingCart {
         this.quantity = quantity;
     }
 
-    @Override
-    public String toString() {
-        return "ShoppingCart{" +
-                "sid=" + sid +
-                ", uid=" + uid +
-                ", pid=" + pid +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

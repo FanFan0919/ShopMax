@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Shopping+</title>
+<title>ShopMax</title>
 </head>
 <script type="text/javascript">
     getAllProducts();
