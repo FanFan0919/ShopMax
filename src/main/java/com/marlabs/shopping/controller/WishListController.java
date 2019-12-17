@@ -91,4 +91,43 @@ public class WishListController {
         return resultMap;
     }
 
+
+    @RequestMapping(value = "/wishListAddOne")
+    @ResponseBody
+    // 1. no login, update session
+    // 2. already login, update database
+    public void addOne(Integer uid, Integer pid, HttpSession httpSession) {
+        if (uid == -1) {
+            List<ProductInCart> productInCartList = (List<ProductInCart>) httpSession.getAttribute("productInCartList");
+            for (ProductInCart p : productInCartList) {
+                if (p.getPid() == pid) {
+                    p.setQuantity(p.getQuantity() + 1);
+                }
+            }
+        } else {
+            WishList wishList = wishListService.getWishList(uid, pid);
+            wishList.setQuantity(wishList.getQuantity() + 1);
+            wishListService.updateWishList(wishList);
+        }
+    }
+
+    @RequestMapping(value = "/wishListRemoveOne")
+    @ResponseBody
+    // 1. no login, update session
+    // 2. already login, update database
+    public void removeOne(Integer uid, Integer pid, HttpSession httpSession) {
+        if (uid == -1) {
+            List<ProductInCart> productInCartList = (List<ProductInCart>) httpSession.getAttribute("productInCartList");
+            for (ProductInCart p : productInCartList) {
+                if (p.getPid() == pid) {
+                    p.setQuantity(p.getQuantity() - 1);
+                }
+            }
+        } else {
+            WishList wishList = wishListService.getWishList(uid, pid);
+            wishList.setQuantity(wishList.getQuantity() - 1);
+            wishListService.updateWishList(wishList);
+        }
+    }
+
 }

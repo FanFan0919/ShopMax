@@ -80,11 +80,11 @@
                                 <td>
                                     <div class="input-group mb-3" style="max-width: 120px;">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                            <button onclick="removeOne(${productToBuy.pid})" class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                                         </div>
                                         <input type="text" class="form-control text-center" value="${productToBuy.quantity}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                            <button onclick="addOne(${productToBuy.pid})" class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                                         </div>
                                     </div>
 
@@ -155,7 +155,31 @@
         }
     }
 
+    function addOne(pid) {
+        var shoppingCart = {};
+        shoppingCart.uid = ${currentUser.uid};
+        shoppingCart.pid = pid;
+        $.ajax({
+            async : false,
+            type : 'POST',
+            url : '${cp}/wishListAddOne',
+            data : shoppingCart,
+            dataType : 'json'
+        });
+    }
 
+    function removeOne(pid) {
+        var shoppingCart = {};
+        shoppingCart.uid = ${currentUser.uid};
+        shoppingCart.pid = pid;
+        $.ajax({
+            async : false,
+            type : 'POST',
+            url : '${cp}/wishListRemoveOne',
+            data : shoppingCart,
+            dataType : 'json'
+        });
+    }
 </script>
 </body>
 </html>

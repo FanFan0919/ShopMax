@@ -153,7 +153,7 @@
                 deleteResult = result.result;
             },
             error : function(result) {
-                layer.alert('Fail to connect to server to delete shopping cart');
+                // layer.alert('Fail to connect to server to delete shopping cart');
             }
         });
         if(deleteResult == 'success'){

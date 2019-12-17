@@ -112,7 +112,7 @@
         }
         var registerResult = null;
         $.ajax({
-            async : false, //disable async
+            async : false,
             type : 'POST',
             url : '${cp}/doRegister',
             data : user,
