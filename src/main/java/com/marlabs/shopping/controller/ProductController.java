@@ -1,9 +1,7 @@
 package com.marlabs.shopping.controller;
 
 import com.marlabs.shopping.entity.Product;
-import com.marlabs.shopping.entity.ShoppingCart;
 import com.marlabs.shopping.service.Interface.ProductService;
-import com.marlabs.shopping.service.Interface.ShoppingCartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

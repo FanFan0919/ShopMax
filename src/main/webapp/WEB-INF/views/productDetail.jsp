@@ -102,20 +102,6 @@
 </div>
 <script>
 
-    <%--function subAmount() {--%>
-    <%--    var productAmount = document.getElementById("productAmount").value;--%>
-    <%--    var amount = parseInt(productAmount);--%>
-    <%--    if(amount >= 2) amount--;--%>
-    <%--    document.getElementById("productAmount").value = amount;--%>
-    <%--}--%>
-
-    <%--function addAmount() {--%>
-    <%--    var productAmount = document.getElementById("productAmount").value;--%>
-    <%--    var amount = parseInt(productAmount);--%>
-    <%--    if(amount < ${product.stock}) amount++;--%>
-    <%--    document.getElementById("productAmount").value = amount;--%>
-    <%--}--%>
-
     function addToShoppingCart(uid, pid) {
         var productAmount = document.getElementById("productAmount");
         var amount = parseInt(productAmount.value);
@@ -172,6 +158,21 @@
             layer.msg('Success!',{icon:1});
         }
     }
+
+
+    <%--function subAmount() {--%>
+    <%--    var productAmount = document.getElementById("productAmount").value;--%>
+    <%--    var amount = parseInt(productAmount);--%>
+    <%--    if(amount >= 2) amount--;--%>
+    <%--    document.getElementById("productAmount").value = amount;--%>
+    <%--}--%>
+
+    <%--function addAmount() {--%>
+    <%--    var productAmount = document.getElementById("productAmount").value;--%>
+    <%--    var amount = parseInt(productAmount);--%>
+    <%--    if(amount < ${product.stock}) amount++;--%>
+    <%--    document.getElementById("productAmount").value = amount;--%>
+    <%--}--%>
 </script>
 <!-- footer -->
 <jsp:include page="include/foot.jsp"/>

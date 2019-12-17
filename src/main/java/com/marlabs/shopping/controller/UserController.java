@@ -1,5 +1,6 @@
 package com.marlabs.shopping.controller;
 
+import com.marlabs.shopping.entity.ProductInCart;
 import com.marlabs.shopping.entity.ShoppingCart;
 import com.marlabs.shopping.entity.User;
 import com.marlabs.shopping.service.Interface.ShoppingCartService;
@@ -66,14 +67,34 @@ public class UserController {
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> doLogin(String username, String password, HttpSession httpSession) {
-
-        Object temp = httpSession.getAttribute("currentUser");
-        Integer oldUid = ((User)(temp)).getUid();
-
         User user = userService.getUser(username);
-
+        Integer newUid = user.getUid();
+        // previous anonymous user has built a shoppingCart, merge it to your cart
+        if (httpSession.getAttribute("productInCartList") != null) {
+            List<ProductInCart> list = (List<ProductInCart>) httpSession.getAttribute("productInCartList");
+            if (list.size() > 0) {
+                for (ProductInCart p : list) {
+                    // This record already exists, merge it
+                    if (shoppingCartService.getShoppingCart(newUid, p.getPid()) != null) {
+                        ShoppingCart existingShoppingCart = shoppingCartService.getShoppingCart(newUid, p.getPid());
+                        existingShoppingCart.setQuantity(existingShoppingCart.getQuantity() + p.getQuantity());
+                        shoppingCartService.updateShoppingCart(existingShoppingCart);
+                    } else {
+                        // This record doesn't exist, create a new one
+                        ShoppingCart newCart = new ShoppingCart();
+                        newCart.setUid(newUid);
+                        newCart.setPid(p.getPid());
+                        newCart.setQuantity(p.getQuantity());
+                        shoppingCartService.addShoppingCart(newCart);
+                    }
+                    // Delete record from session
+                    // shoppingCartService.deleteShoppingCart(-1, p.getPid());
+                }
+                // set attribute("productInCartList") = null
+                httpSession.setAttribute("productInCartList", null);
+            }
+        }
         String result = "fail";
-
         if (user == null)
             result = "wrongUser";
         else {
@@ -83,33 +104,6 @@ public class UserController {
             } else
                 result = "wrongPassword";
         }
-        //if there is already a anonymous user, merge his shoppingCart to yours
-        Integer newUid = user.getUid();
-        if (oldUid == -1) {
-            // There is already a existing user. check his shopping cart
-            List<ShoppingCart> list = shoppingCartService.getShoppingCartList(-1);
-            if (list.size() > 0) {
-                for (ShoppingCart oldCart : list) {
-                    // Add record to new user
-                    if (shoppingCartService.getShoppingCart(newUid, oldCart.getPid()) != null) {
-                        // This record already exists, merge it
-                        ShoppingCart existingShoppingCart = shoppingCartService.getShoppingCart(newUid, oldCart.getPid());
-                        existingShoppingCart.setQuantity(existingShoppingCart.getQuantity() + oldCart.getQuantity());
-                        shoppingCartService.updateShoppingCart(existingShoppingCart);
-                    } else {
-                        // This record doesn't exist, create a new one
-                        ShoppingCart newCart = new ShoppingCart();
-                        newCart.setUid(newUid);
-                        newCart.setPid(oldCart.getPid());
-                        newCart.setQuantity(oldCart.getQuantity());
-                        shoppingCartService.addShoppingCart(newCart);
-                    }
-                    // Delete record from old user
-                    shoppingCartService.deleteShoppingCart(oldCart.getUid(), oldCart.getPid());
-                }
-            }
-        }
-
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("result", result);
         return resultMap;
@@ -120,6 +114,7 @@ public class UserController {
         User user = new User();
         user.setUid(-1);
         httpSession.setAttribute("currentUser",user);
+        httpSession.setAttribute("productInCartList", null);
         return "redirect:login";
     }
 }

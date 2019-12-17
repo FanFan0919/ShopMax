@@ -91,7 +91,7 @@
                                 </td>
                                 <td>$${productToBuy.price * productToBuy.quantity}</td>
                                 <td>
-                                    <p><button class="btn btn-primary height-auto btn-sm" onclick="deleteWishList(${productToBuy.pid})">Delete Items</button></p>
+                                    <p><button class="btn btn-primary height-auto btn-sm" onclick="deleteWishList(${productToBuy.pid})">Delete   Items</button></p>
                                     <p><button class="btn btn-primary height-auto btn-sm" onclick="moveToCart(${productToBuy.pid})">Move to ShoppingCart</button></p>
                                 </td>
                             </tr>

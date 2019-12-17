@@ -22,8 +22,6 @@ import java.util.Map;
 @Controller
 public class WishListController {
     @Resource
-    private ProductService productService;
-    @Resource
     private WishListService wishListService;
     @Resource
     private ShoppingCartService shoppingCartService;

@@ -51,25 +51,25 @@
             <div class="form-group">
                 <label for="inputUserName" class="col-sm-2 col-md-2 control-label">UserName</label>
                 <div class="col-sm-6 col-md-6">
-                    <input type="text" class="form-control" id="inputUserName" placeholder="root"/>
+                    <input type="text" class="form-control" id="inputUserName" placeholder="testName6"/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputPassword" class="col-sm-2 col-md-2 control-label">Password</label>
                 <div class="col-sm-6 col-md-6">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="123456" />
+                    <input type="password" class="form-control" id="inputPassword" placeholder="testPassword6" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail" class="col-sm-2 col-md-2 control-label">Email</label>
                 <div class="col-sm-6 col-md-6">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="test@marlabs.com"/>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="testEmail6"/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputNickname" class="col-sm-2 col-md-2 control-label">Nickname</label>
                 <div class="col-sm-6 col-md-6">
-                    <input type="text" class="form-control" id="inputNickname" placeholder="Vincent" />
+                    <input type="text" class="form-control" id="inputNickname" placeholder="nickName6" />
                 </div>
             </div>
             <div class="form-group">

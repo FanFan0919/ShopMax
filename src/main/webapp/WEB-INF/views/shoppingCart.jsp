@@ -83,18 +83,18 @@
                                 <td>
                                     <div class="input-group mb-3" style="max-width: 120px;">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                            <button onclick="removeOne(${productToBuy.pid})" class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                                         </div>
                                         <input type="text" class="form-control text-center" value="${productToBuy.quantity}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                            <button onclick="addOne(${productToBuy.pid})" class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                                         </div>
                                     </div>
 
                                 </td>
                                 <td>$${productToBuy.price * productToBuy.quantity}</td>
                                 <td>
-                                    <p><button class="btn btn-primary height-auto btn-sm" onclick="deleteShoppingCart(${productToBuy.pid})">Delete Items</button></p>
+                                    <p><button class="btn btn-primary height-auto btn-sm" onclick="deleteShoppingCart(${productToBuy.pid})">Delete   Items</button></p>
                                     <p><button class="btn btn-primary height-auto btn-sm" onclick="moveToWishList(${productToBuy.pid})">Move to WishList</button></p>
                                 </td>
                             </tr>
@@ -137,6 +137,7 @@
 <jsp:include page="include/foot.jsp"/>
 
 <script>
+
     function deleteShoppingCart(pid) {
         var shoppingCart = {};
         shoppingCart.uid = ${currentUser.uid};
@@ -162,7 +163,6 @@
     }
 
     function moveToWishList(pid) {
-
         var shoppingCart = {};
         shoppingCart.uid = ${currentUser.uid};
         shoppingCart.pid = pid;
@@ -185,12 +185,36 @@
             window.location.href="${cp}/login";
         }
         if(moveToWishListResult == 'success'){
-            layer.msg('Move To WishLIst Success!',{icon:1});
+            layer.msg('Move To WishList Success!',{icon:1});
             window.location.href="${cp}/getAllShoppingCarts";
         }
     }
 
+    function addOne(pid) {
+        var shoppingCart = {};
+        shoppingCart.uid = ${currentUser.uid};
+        shoppingCart.pid = pid;
+        $.ajax({
+            async : false,
+            type : 'POST',
+            url : '${cp}/addOne',
+            data : shoppingCart,
+            dataType : 'json'
+        });
+    }
 
+    function removeOne(pid) {
+        var shoppingCart = {};
+        shoppingCart.uid = ${currentUser.uid};
+        shoppingCart.pid = pid;
+        $.ajax({
+            async : false,
+            type : 'POST',
+            url : '${cp}/removeOne',
+            data : shoppingCart,
+            dataType : 'json'
+        });
+    }
 </script>
 </body>
 </html>

@@ -8,7 +8,6 @@ public class ProductInCart {
     private Integer quantity;
     private String imgUrl;
 
-
     public Integer getPid() {
         return pid;
     }
