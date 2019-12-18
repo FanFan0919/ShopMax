@@ -1,12 +1,16 @@
 package com.marlabs.shopping.entity;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
+import org.hibernate.annotations.Cache;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="product")
-public class Product {
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Product{
     private Integer pid;
     private String name;
     private String description;

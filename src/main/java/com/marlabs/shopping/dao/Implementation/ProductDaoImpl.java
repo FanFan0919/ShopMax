@@ -47,6 +47,7 @@ public class ProductDaoImpl implements ProductDao {
     public List<Product> getAllProducts() {
         String hql = "from Product";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setCacheable(true);
         return query.list();
     }
 }
